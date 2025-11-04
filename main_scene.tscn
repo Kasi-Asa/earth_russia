@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://clovckhwkxee6"]
+
+[ext_resource type="Script" uid="uid://cm1ahvokhshtm" path="res://Scripts/game_manager.gd" id="1_0f027"]
+[ext_resource type="Script" uid="uid://ccupi2g2xr2i4" path="res://Scripts/main_scene.gd" id="1_2c62f"]
+[ext_resource type="PackedScene" uid="uid://db84mkh6hdth0" path="res://cursor.tscn" id="2_8mm7a"]
+[ext_resource type="Script" uid="uid://d2fnrs52lnl4o" path="res://Scripts/area.gd" id="2_hq1ik"]
+[ext_resource type="Script" uid="uid://cgxovslffn85p" path="res://Scripts/troop_manager.gd" id="3_gyfs4"]
+[ext_resource type="PackedScene" uid="uid://fqq0hriiovh7" path="res://Individual.tscn" id="4_d5x1h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0f027"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mm7a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2c62f"]
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_2c62f")
+
+[node name="Middle" type="Node2D" parent="."]
+
+[node name="Left" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("2_hq1ik")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left" groups=["Colliders"]]
+shape = SubResource("RectangleShape2D_0f027")
+debug_color = Color(0.333333, 0.505882, 0.945098, 1)
+
+[node name="wall" type="StaticBody2D" parent="Left"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left/wall" groups=["Colliders"]]
+shape = SubResource("RectangleShape2D_8mm7a")
+debug_color = Color(0, 0.635294, 0.239216, 1)
+
+[node name="Right" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("2_hq1ik")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right" groups=["Colliders"]]
+shape = SubResource("RectangleShape2D_2c62f")
+
+[node name="wall" type="StaticBody2D" parent="Right"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right/wall" groups=["Colliders"]]
+shape = SubResource("RectangleShape2D_8mm7a")
+debug_color = Color(0.921569, 0.235294, 0.396078, 0.917647)
+
+[node name="Cursor" parent="." instance=ExtResource("2_8mm7a")]
+mouse_radius = 50.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_0f027")
+sidemost_buffer = 50.0
+
+[node name="TroopManager" type="Node" parent="."]
+script = ExtResource("3_gyfs4")
+s_individual = ExtResource("4_d5x1h")
+min_dis_for_commanders = 10.0
+min_dis_for_soldiers = 5.0
+max_commanders_spawn_attempts = 20
+max_soldiers_spawn_attempts = 30
+max_one_troop_range = 100.0
+
+[node name="People" type="Node2D" parent="."]
