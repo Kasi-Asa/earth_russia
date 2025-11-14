@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bdn1irrox83v"
+path="res://.godot/imported/no_to_war_2.ogg-4d274f730ed0638130df18808400e584.oggvorbisstr"
+
+[deps]
+
+source_file="res://Audio/НЕТ ВОЙНЕ/no_to_war_2.ogg"
+dest_files=["res://.godot/imported/no_to_war_2.ogg-4d274f730ed0638130df18808400e584.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

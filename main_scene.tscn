@@ -1,11 +1,30 @@
-[gd_scene load_steps=10 format=3 uid="uid://clovckhwkxee6"]
+[gd_scene load_steps=29 format=3 uid="uid://clovckhwkxee6"]
 
 [ext_resource type="Script" uid="uid://cm1ahvokhshtm" path="res://Scripts/game_manager.gd" id="1_0f027"]
 [ext_resource type="Script" uid="uid://ccupi2g2xr2i4" path="res://Scripts/main_scene.gd" id="1_2c62f"]
 [ext_resource type="PackedScene" uid="uid://db84mkh6hdth0" path="res://cursor.tscn" id="2_8mm7a"]
 [ext_resource type="Script" uid="uid://d2fnrs52lnl4o" path="res://Scripts/area.gd" id="2_hq1ik"]
+[ext_resource type="AudioStream" uid="uid://brrarjpfept46" path="res://Audio/music.ogg" id="3_5smuj"]
 [ext_resource type="Script" uid="uid://cgxovslffn85p" path="res://Scripts/troop_manager.gd" id="3_gyfs4"]
 [ext_resource type="PackedScene" uid="uid://fqq0hriiovh7" path="res://Individual.tscn" id="4_d5x1h"]
+[ext_resource type="PackedScene" uid="uid://do5lvdkdfq45" path="res://no_to_war_zone.tscn" id="5_nfk4m"]
+[ext_resource type="Texture2D" uid="uid://dja8u2h08aw5c" path="res://Textures/НЕТ ВОЙНЕ/НЕТ ВОЙНЕ 0.png" id="6_66tet"]
+[ext_resource type="Texture2D" uid="uid://dokoxli4qm2xt" path="res://Textures/НЕТ ВОЙНЕ/НЕТ ВОЙНЕ 1.png" id="7_7ycvg"]
+[ext_resource type="Texture2D" uid="uid://q41hb6nt2g6" path="res://Textures/НЕТ ВОЙНЕ/НЕТ ВОЙНЕ 2.png" id="8_671wp"]
+[ext_resource type="Texture2D" uid="uid://b4ftf2du15e33" path="res://Textures/НЕТ ВОЙНЕ/НЕТ ВОЙНЕ 3.png" id="9_mo76n"]
+[ext_resource type="Texture2D" uid="uid://bgk7rik0l8bqr" path="res://Textures/НЕТ ВОЙНЕ/НЕТ ВОЙНЕ 4.png" id="10_42l1d"]
+[ext_resource type="Texture2D" uid="uid://cwtltv3f2wexy" path="res://Textures/НЕТ ВОЙНЕ/НЕТ ВОЙНЕ 5.png" id="11_mo76n"]
+[ext_resource type="AudioStream" uid="uid://cvc27cuf6tbxt" path="res://Audio/НЕТ ВОЙНЕ/no_to_war_0.ogg" id="12_fv2he"]
+[ext_resource type="AudioStream" uid="uid://cq1asvge1s3jc" path="res://Audio/НЕТ ВОЙНЕ/no_to_war_1.ogg" id="13_5smuj"]
+[ext_resource type="PackedScene" uid="uid://bnsb8l6m2w113" path="res://text_box.tscn" id="14_42l1d"]
+[ext_resource type="AudioStream" uid="uid://bdn1irrox83v" path="res://Audio/НЕТ ВОЙНЕ/no_to_war_2.ogg" id="14_y5ved"]
+[ext_resource type="AudioStream" uid="uid://0yeeoj3r3vo2" path="res://Audio/НЕТ ВОЙНЕ/no_to_war_3.ogg" id="15_kv3aw"]
+[ext_resource type="AudioStream" uid="uid://dswjvdeosoklf" path="res://Audio/НЕТ ВОЙНЕ/no_to_war_4.ogg" id="16_o7u2a"]
+[ext_resource type="AudioStream" uid="uid://c2dkh1hcs7dbm" path="res://Audio/НЕТ ВОЙНЕ/no_to_war_5.ogg" id="17_ijoax"]
+[ext_resource type="AudioStream" uid="uid://cdpm7cg2ddc5o" path="res://Audio/НЕТ ВОЙНЕ/no_to_war_6.ogg" id="18_j8kkg"]
+[ext_resource type="AudioStream" uid="uid://b5jvb27860g8c" path="res://Audio/НЕТ ВОЙНЕ/no_to_war_7.ogg" id="19_yh4yk"]
+[ext_resource type="AudioStream" uid="uid://5s10jru7r0is" path="res://Audio/НЕТ ВОЙНЕ/no_to_war_8.ogg" id="20_p8s74"]
+[ext_resource type="AudioStream" uid="uid://dsuiwnjdfjilr" path="res://Audio/НЕТ ВОЙНЕ/no_to_war_9.ogg" id="21_o4fqm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0f027"]
 
@@ -15,6 +34,60 @@
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_2c62f")
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_0f027")
+sidemost_buffer = 50.0
+gathering_pos_x_offset = 20.0
+activist_strength_accum = 0.2
+bad_ending_count = 20
+good_ending_count = 50
+conscription_schedule = [{
+"commander_num": 2,
+"delay": 20.0,
+"soldier_num": 20
+}, {
+"commander_num": 1,
+"delay": 30.0,
+"soldier_num": 10
+}, {
+"commander_num": 1,
+"delay": 20.0,
+"soldier_num": 20
+}, {
+"commander_num": 5,
+"delay": 40.0,
+"soldier_num": 20
+}, {
+"commander_num": 3,
+"delay": 20.0,
+"soldier_num": 20
+}, {
+"commander_num": 5,
+"delay": 30.0,
+"soldier_num": 30
+}, {
+"commander_num": 3,
+"delay": 30.0,
+"soldier_num": 60
+}, {
+"commander_num": 2,
+"delay": 30.0,
+"soldier_num": 60
+}, {
+"commander_num": 5,
+"delay": 30.0,
+"soldier_num": 60
+}, {
+"commander_num": 5,
+"delay": 30.0,
+"soldier_num": 60
+}, {
+"commander_num": 5,
+"delay": 30.0,
+"soldier_num": 60
+}]
+music = ExtResource("3_5smuj")
 
 [node name="Middle" type="Node2D" parent="."]
 
@@ -49,23 +122,30 @@ collision_layer = 4
 shape = SubResource("RectangleShape2D_8mm7a")
 debug_color = Color(0.921569, 0.235294, 0.396078, 0.917647)
 
-[node name="Cursor" parent="." instance=ExtResource("2_8mm7a")]
-mouse_radius = 50.0
-
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
-[node name="GameManager" type="Node" parent="."]
-script = ExtResource("1_0f027")
-sidemost_buffer = 50.0
+[node name="Cursor" parent="." instance=ExtResource("2_8mm7a")]
+no_to_war_zone_scene = ExtResource("5_nfk4m")
+no_to_war_texture_arr = Array[Texture2D]([ExtResource("6_66tet"), ExtResource("7_7ycvg"), ExtResource("8_671wp"), ExtResource("9_mo76n"), ExtResource("10_42l1d"), ExtResource("11_mo76n")])
+mouse_radius = 50.0
+max_scale = 1.0
+no_to_war_audio = Array[AudioStream]([ExtResource("12_fv2he"), ExtResource("13_5smuj"), ExtResource("14_y5ved"), ExtResource("15_kv3aw"), ExtResource("16_o7u2a"), ExtResource("17_ijoax"), ExtResource("18_j8kkg"), ExtResource("19_yh4yk"), ExtResource("20_p8s74"), ExtResource("21_o4fqm")])
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [node name="TroopManager" type="Node" parent="."]
 script = ExtResource("3_gyfs4")
 s_individual = ExtResource("4_d5x1h")
-min_dis_for_commanders = 10.0
-min_dis_for_soldiers = 5.0
+min_dis_for_commanders = 200.0
+min_dis_for_soldiers = 50.0
 max_commanders_spawn_attempts = 20
-max_soldiers_spawn_attempts = 30
-max_one_troop_range = 100.0
+max_soldiers_spawn_attempts = 40
+max_one_troop_range = 600.0
 
 [node name="People" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="TextBox" parent="CanvasLayer" instance=ExtResource("14_42l1d")]

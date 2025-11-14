@@ -1,8 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://db84mkh6hdth0"]
+[gd_scene load_steps=5 format=3 uid="uid://db84mkh6hdth0"]
 
 [ext_resource type="Script" uid="uid://v2lcrtl5bvw7" path="res://Scripts/cursor.gd" id="1_fsq4c"]
+[ext_resource type="Shader" uid="uid://iqkoc7qh00oo" path="res://Shader/reveal.gdshader" id="2_e4vdg"]
+[ext_resource type="Texture2D" uid="uid://dja8u2h08aw5c" path="res://Textures/НЕТ ВОЙНЕ/НЕТ ВОЙНЕ 0.png" id="3_e4vdg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_76ls5"]
+shader = ExtResource("2_e4vdg")
+shader_parameter/progress = 1.0
+shader_parameter/edge = 0.05
+shader_parameter/min_alpha = 0.2
 
 [node name="Cursor" type="Node2D"]
 script = ExtResource("1_fsq4c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_76ls5")
+texture = ExtResource("3_e4vdg")

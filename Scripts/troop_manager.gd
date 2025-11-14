@@ -9,12 +9,13 @@ class_name TroopManager
 @export var max_soldiers_spawn_attempts : int
 @export var max_one_troop_range : float
 @export var max_one_troop_size : int # how many rows of soldiers it can have
-@export var max_c_stubbornness : float
-@export var max_s_stubbornness : float
+#@export var max_c_stubbornness : float
+#@export var max_s_stubbornness : float
 # need to get the value from GM in the beginning
 var horizon_y
 var leftmost_x
 var rightmost_x
+var _is_ending := false
 # <generate a troop>
 # 1. spawn commanders randomly around the line, 
 #		with the min_dis_for_commanders
@@ -27,6 +28,8 @@ var rightmost_x
 #   #######
 #    ####
 #	  ##
+func _ready():
+	Toolkit.cancel_signal.connect(_on_end)
 func conscript(commander_num, soldier_num):
 	var troop_arr = _fill_commanders(commander_num)
 	_fill_front_line(soldier_num, troop_arr)
@@ -68,6 +71,7 @@ func _spawn_troops(troop):
 		_fill_soldiers(count, troop, range)
 		var dur = randf_range(2.8, 3.2)
 		await  Toolkit.wait(dur)
+		if _is_ending == true: break
 func _fill_soldiers(count: int, troop: Troop, troop_range: float):
 	var c_x = troop.commander_x
 	var x_arr = [] # the x of pos
@@ -98,6 +102,9 @@ func _spawn_individual(pos: Vector2) -> Individual:
 	var indi = s_individual.instantiate() as Individual
 	indi.position = pos
 	indi.connect("became_real_activist", Callable(game_manager, "on_individual_became_real_activist"))
+	indi.connect("crossed_bad_ending_line", Callable(game_manager, "on_crossed_bad_ending_line"))
+	game_manager.connect("good_ending_trigger", Callable(indi, "on_good_ending"))
+	game_manager.connect("bad_ending_trigger", Callable(indi, "on_bad_ending"))
 	return indi
 func _distribute_soldiers_into_troops(total_count: int, troop_count: int) -> Array:
 	var base = total_count / troop_count
@@ -139,3 +146,5 @@ func distribute_soldiers_into_rows(total_soldiers: int, rows: int) -> Array:
 		accumulated -= 1
 	
 	return result
+func _on_end(): _is_ending = true
+	
